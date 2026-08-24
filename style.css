@@ -37,11 +37,19 @@ button {
 }
 
 button:focus,
-button:focus-visible,
 button:active {
   outline: none;
   box-shadow: none;
 }
+
+button:focus-visible,
+a:focus-visible,
+.nav-button:focus-visible,
+.mobile-nav-button:focus-visible,
+.project-card:focus-visible,
+.achievement-card:focus-visible,
+.contact-link:focus-visible,
+.contact-email:focus-visible,
 
 
 /* ── CSS VARIABLES ──────────────────────────────────────────── */
@@ -526,12 +534,12 @@ nav a.nav-active { color: var(--fg); }
 }
 
 #theme-track {
-  width:      4px;
+  width:      2.75rem;
   height:     80px;
-  background: var(--slider-track);
+  background: linear-gradient(var(--slider-track), var(--slider-track)) center / 4px 100% no-repeat;
   border-radius: 2px;
   position:   relative;
-  cursor:     none;
+  cursor:     pointer;
   transition: background 0.4s;
 }
 
@@ -941,6 +949,29 @@ h2 em { font-style: italic; }
   border-color: rgba(198, 16, 46, 0.25);
 }
 
+.achievement-card[data-image] {
+  cursor: pointer;
+}
+
+.achievement-card[data-image]::after {
+  content: "View photo \2192";
+  position: relative;
+  top: auto;
+  right: auto;
+  z-index: 1;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-top: 1rem;
+  background: none;
+  transform: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg2);
+}
+
 .achievement-card h3 {
   position: relative;
   z-index: 1;
@@ -1065,6 +1096,53 @@ h2 em { font-style: italic; }
   color:        var(--fg);
   border-color: var(--fg);
 }
+
+/* ── LIGHTBOX ─────────────────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10010;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+#lightbox[hidden] { display: none; }
+
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+#lightbox-caption {
+  max-width: 40rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: #f0f0ee;
+  text-align: center;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+#lightbox-close:hover { background: rgba(255, 255, 255, 0.14); }
 
 /* Magnetic effect — will-change set via JS */
 .contact-email {
@@ -1289,6 +1367,33 @@ footer span {
   pointer-events: none;
 }
 
+#back-to-top {
+  position: fixed;
+  right: 5.25rem;
+  bottom: 4.5rem;
+  z-index: 799;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--fg);
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+}
+
+#back-to-top:hover { background: var(--bg2); }
+
+#back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
 .indicator-dot {
   width:         15px;
   height:        15px;
@@ -1409,9 +1514,9 @@ footer span {
   #preview-float     { display: none; }
   .exp-item          { grid-template-columns: 1fr; gap: 0.5rem; }
   #theme-slider-wrap { display: none; }
-
   #scroll-indicator  { bottom: 1.5rem; right: 1.5rem; gap: 0.3rem; }
   .indicator-dot     { width: 6px; height: 6px; }
+  #back-to-top       { right: 3.75rem; bottom: 1.5rem; width: 2.5rem; height: 2.5rem; }
 
   footer {
     flex-direction: column;
@@ -1429,4 +1534,17 @@ footer span {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+@media print {
+  #cur, #cur-ring, #tooltip, #preview-float,
+  #startup-loader, #theme-slider-wrap, #scroll-indicator,
+  #back-to-top, nav, #mobile-menu, .marquee-wrap, #lightbox {
+    display: none !important;
+  }
+
+  body::after { display: none !important; }
+  body { color: #000; background: #fff; }
+  a { color: #000; text-decoration: underline; }
+  .section-full, section { break-inside: avoid; }
 }

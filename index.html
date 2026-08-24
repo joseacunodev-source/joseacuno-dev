@@ -27,6 +27,17 @@
   />
 
   <!-- Stylesheet -->
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("theme");
+        const dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      } catch {
+        // Keep the light theme declared in the document when storage is unavailable.
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="style.css" />
 
   <!-- Firebase SDK -->
@@ -46,6 +57,17 @@
 
     const app = initializeApp(firebaseConfig);
     getAnalytics(app);
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jose Elmar Acuno",
+      "jobTitle": "Computer Engineer",
+      "url": "https://joseacuno-dev.web.app/",
+      "sameAs": ["https://linkedin.com/in/jose-elmar-acuno"],
+      "knowsAbout": ["Embedded Systems", "Robotics", "Automation", "Machine Learning", "RFID Systems", "Python"]
+    }
   </script>
 </head>
 
@@ -80,11 +102,11 @@
   <div id="preview-float" aria-hidden="true"></div>
 
   <!-- Side Theme Slider -->
-  <div id="theme-slider-wrap" aria-label="Theme switcher">
+  <div id="theme-slider-wrap">
     <span class="mode-icon active" id="icon-light">◉</span>
-    <div id="theme-track">
+    <button id="theme-track" type="button" aria-label="Toggle color theme" aria-pressed="false">
       <div id="theme-thumb"></div>
-    </div>
+    </button>
     <span class="mode-icon" id="icon-dark">◐</span>
   </div>
 
@@ -97,6 +119,7 @@
     <div class="indicator-dot"></div>
     <div class="indicator-dot is-active"></div>
   </div>
+  <button id="back-to-top" type="button" aria-label="Back to top">&uarr;</button>
 
   <!-- Navigation -->
   <nav>
@@ -108,12 +131,13 @@
       <li><button type="button" class="nav-button" data-scroll-target="achievements">Achievements</button></li>
       <li><button type="button" class="nav-button" data-scroll-target="research">Research</button></li>
       <li><button type="button" class="nav-button" data-scroll-target="contact">Contact</button></li>
+      <li><a href="resume.pdf" target="_blank" rel="noopener noreferrer" download>Resumé/CV</a></li>
     </ul>
     <button id="menu-btn" aria-label="Open menu">☰</button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" role="dialog" aria-label="Navigation">
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" aria-hidden="true">
     <button id="mobile-close" aria-label="Close menu">✕</button>
     <button type="button" class="mobile-nav-button" data-scroll-target="about">About</button>
     <button type="button" class="mobile-nav-button" data-scroll-target="skills">Skills</button>
@@ -121,6 +145,7 @@
     <button type="button" class="mobile-nav-button" data-scroll-target="achievements">Achievements</button>
     <button type="button" class="mobile-nav-button" data-scroll-target="research">Research</button>
     <button type="button" class="mobile-nav-button" data-scroll-target="contact">Contact</button>
+    <a href="resume.pdf" class="mobile-nav-button" target="_blank" rel="noopener noreferrer" download>Resumé/CV</a>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════ -->
@@ -248,9 +273,9 @@
                 problem to working solution.
               </p>
               <p>
-                I've shipped freelance projects across software and hardware, RFID systems,
-                machine learning implementations, web tools. I've also been the engineer dropped
-                into a non-engineering role who immediately
+                I've shipped freelance projects that cross the software/hardware line more often
+                than not — the kind where you're debugging a sensor and a database query in the
+                same afternoon. I've also been the engineer dropped into a non-engineering role who immediately
                 <strong>wrote a Python script to automate the boring parts</strong>. Twice now.
                 No regrets.
               </p>
@@ -443,7 +468,9 @@
         <h2>Competition-ready<br><em>builder</em></h2>
 
         <div class="achievement-grid">
-          <div class="achievement-card">
+          <article class="achievement-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Line-Following Robotics photo"
+            data-image="line following.png"
+            data-caption="Line-following robot — sensor-driven control logic built for competition tracks.">
             <h3>Line-Following Robotics</h3>
             <p>
               Built and refined robots designed for precision, control, and fast
@@ -454,9 +481,11 @@
               <li>Improved reliability through testing and iteration</li>
               <li>Strengthened problem-solving under pressure</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="achievement-card">
+          <article class="achievement-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Automation Projects photo"
+            data-image="automation.png"
+            data-caption="Automation projects — practical workflow logic that makes repetitive work more reliable.">
             <h3>Automation Projects</h3>
             <p>
               Developed practical automation solutions that reduce repetitive work
@@ -467,9 +496,11 @@
               <li>Built solutions with clear, maintainable structure</li>
               <li>Enjoys turning messy processes into smooth systems</li>
             </ul>
-          </div>
+          </article>
 
-          <div class="achievement-card">
+          <article class="achievement-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View Breadboarding Competitions photo"
+            data-image="breadboarding.png"
+            data-caption="Breadboarding competition build — rapid circuit prototyping, testing, and troubleshooting.">
             <h3>Breadboarding Competitions</h3>
             <p>
               Thrives in fast-paced electronics builds where accuracy, neatness,
@@ -480,7 +511,7 @@
               <li>Comfortable troubleshooting under pressure</li>
               <li>Brings a structured approach to hardware builds</li>
             </ul>
-          </div>
+          </article>
 
           <div class="achievement-card">
             <h3>What This Says About Me</h3>
@@ -565,7 +596,7 @@
         >
           LinkedIn
         </a>
-        <!-- <a href="#achievements" class="contact-link">Achievements</a> -->
+        <a href="resume.pdf" class="contact-link" target="_blank" rel="noopener noreferrer" download>Download résumé</a>
       </div>
     </section>
 
@@ -577,6 +608,12 @@
     <span>Computer Engineer — Manila, PH</span>
     <span>Inspired by Nothing. Built by hand.</span>
   </footer>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true" hidden>
+    <button id="lightbox-close" type="button" aria-label="Close image preview">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p id="lightbox-caption"></p>
+  </div>
 
   <!-- Scripts -->
   <script>

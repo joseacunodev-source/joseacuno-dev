@@ -82,6 +82,8 @@ document.querySelectorAll("a, button[data-scroll-target]").forEach((el) => {
 
   el.setAttribute("data-href", href);
 
+  if (el.hasAttribute("download")) return;
+
   if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("mailto:") || href.startsWith("tel:")) {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -198,10 +200,12 @@ const mobileClose = document.getElementById("mobile-close");
 
 function openMobileMenu() {
   if (!mobileMenu) return;
+  mobileMenu.setAttribute("aria-hidden", "false");
   mobileMenu.style.display = "flex";
   requestAnimationFrame(() => mobileMenu.classList.add("open"));
   document.body.classList.add("menu-open");
   document.body.style.overflow = "hidden";
+  mobileClose?.focus();
 }
 
 function closeMobileMenu() {
@@ -209,8 +213,10 @@ function closeMobileMenu() {
   mobileMenu.classList.remove("open");
   setTimeout(() => {
     mobileMenu.style.display = "none";
+    mobileMenu.setAttribute("aria-hidden", "true");
     document.body.classList.remove("menu-open");
     document.body.style.overflow = "";
+    menuBtn?.focus();
   }, 300);
 }
 
@@ -236,6 +242,10 @@ document.querySelectorAll("#mobile-menu .mobile-nav-button").forEach((button) =>
   });
 });
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && mobileMenu?.classList.contains("open")) closeMobileMenu();
+});
+
 // ── THEME SLIDER ─────────────────────────────────────────────────
 const track     = document.getElementById("theme-track");
 const thumb     = document.getElementById("theme-thumb");
@@ -252,13 +262,27 @@ let dragging = false;
 let startY   = 0;
 let startTop = 0;
 
+function getInitialTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") return saved === "dark";
+  } catch {
+    // Fall back to the device preference when storage is unavailable.
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
 function setTheme(dark) {
   isDark = dark;
   htmlEl.setAttribute("data-theme", dark ? "dark" : "light");
+  try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch { /* storage unavailable */ }
   thumb.style.top = (dark ? MAX_TOP : 0) + "px";
   iconLight.classList.toggle("active", !dark);
   iconDark.classList.toggle("active", dark);
+  track.setAttribute("aria-pressed", String(dark));
 }
+
+setTheme(getInitialTheme());
 
 thumb.addEventListener("mousedown", (e) => {
   dragging = true;
@@ -365,6 +389,7 @@ function updateScrollIndicator() {
   const maxScroll      = document.documentElement.scrollHeight - window.innerHeight;
   const scrollProgress = maxScroll === 0 ? 0 : window.scrollY / maxScroll;
   const atBottom       = scrollProgress >= 0.99;
+  document.getElementById("back-to-top")?.classList.toggle("show", atBottom);
 
   if (atBottom && !blinkTriggered) {
     blinkTriggered = true;
@@ -395,9 +420,63 @@ function updateScrollIndicator() {
 window.addEventListener("scroll", updateScrollIndicator);
 updateScrollIndicator();
 
+document.getElementById("back-to-top")?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-// ── DISABLE RIGHT-CLICK ───────────────────────────────────────────
-document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+// ── ACHIEVEMENT IMAGE LIGHTBOX ────────────────────────────────────
+const lightbox        = document.getElementById("lightbox");
+const lightboxImg     = document.getElementById("lightbox-img");
+const lightboxCaption = document.getElementById("lightbox-caption");
+const lightboxClose   = document.getElementById("lightbox-close");
+let lightboxTrigger = null;
+
+function openLightbox(card) {
+  if (!lightbox || !lightboxImg || !lightboxCaption) return;
+  const src = card.dataset.image || "";
+  const caption = card.dataset.caption || "";
+  lightboxTrigger = card;
+  lightboxImg.src = src;
+  lightboxImg.alt = caption;
+  lightboxCaption.textContent = caption;
+  lightbox.hidden = false;
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  lightboxClose?.focus();
+}
+
+function closeLightbox() {
+  if (!lightbox || lightbox.hidden) return;
+  lightbox.hidden = true;
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  lightboxImg?.removeAttribute("src");
+  lightboxTrigger?.focus();
+  lightboxTrigger = null;
+}
+
+document.querySelectorAll(".achievement-card[data-image]").forEach((card) => {
+  card.addEventListener("click", () => openLightbox(card));
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openLightbox(card);
+    }
+  });
+});
+
+lightboxClose?.addEventListener("click", closeLightbox);
+lightbox?.addEventListener("click", (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "Tab" && !lightbox?.hidden) {
+    e.preventDefault();
+    lightboxClose?.focus();
+  }
+});
 
 
 // ── HERO ENTRANCE ────────────────────────────────────────────────
@@ -518,7 +597,7 @@ if (numsGrid) numObs.observe(numsGrid);
 
 // ── ACTIVE NAV LINK ───────────────────────────────────────────────
 const navLinks = document.querySelectorAll("nav ul button, nav ul a");
-const sections = ["hero", "about", "skills", "experience", "research", "contact"]
+const sections = ["hero", "about", "skills", "experience", "achievements", "research", "contact"]
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 
