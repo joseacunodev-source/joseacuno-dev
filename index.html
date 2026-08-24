@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Jose Elmar Acuno — computer engineer focused on robotics, automation, embedded systems, and hands-on electronics." />
+  <meta name="author" content="Jose Elmar Acuno" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Jose Elmar Acuno | Portfolio" />
+  <meta property="og:description" content="Computer Engineer exploring robotics, automation, embedded systems, and practical hardware-software builds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://joseacuno-dev.web.app/" />
+  <meta property="og:image" content="https://joseacuno-dev.web.app/favicon.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jose Elmar Acuno | Portfolio" />
+  <meta name="twitter:description" content="Computer Engineer exploring robotics, automation, embedded systems, and practical hardware-software builds." />
+  <title>Jose Elmar Acuno</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="canonical" href="https://joseacuno-dev.web.app/" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbYVx7ZTBNw1FD7jQOlOfeOCJNcBAu7G4",
+      authDomain: "joseacuno-dev.firebaseapp.com",
+      projectId: "joseacuno-dev",
+      storageBucket: "joseacuno-dev.firebasestorage.app",
+      messagingSenderId: "316717319560",
+      appId: "1:316717319560:web:ac1021f0c32ae46719e63d",
+      measurementId: "G-DP0CYED74H"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
+  </script>
+</head>
+
+<body class="is-loading">
+
+  <!-- Startup Loader -->
+  <div id="startup-loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <div class="loader-top">
+      <span>Jose Elmar Acuno</span>
+      <span>Portfolio / 2026</span>
+    </div>
+    <div class="loader-main">
+      <p class="loader-kicker">Initializing systems</p>
+      <div class="loader-title" aria-hidden="true">
+        <span>Embedded</span>
+        <span>Automation</span>
+        <span>Hardware</span>
+      </div>
+    </div>
+    <div class="loader-bottom">
+      <div class="loader-track">
+        <div class="loader-bar"></div>
+      </div>
+      <span id="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
+  <div id="tooltip"></div>
+  <div id="preview-float" aria-hidden="true"></div>
+
+  <!-- Side Theme Slider -->
+  <div id="theme-slider-wrap" aria-label="Theme switcher">
+    <span class="mode-icon active" id="icon-light">◉</span>
+    <div id="theme-track">
+      <div id="theme-thumb"></div>
+    </div>
+    <span class="mode-icon" id="icon-dark">◐</span>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-indicator" aria-label="Scroll progress indicator">
+    <div class="indicator-dot"></div>
+    <div class="indicator-dot"></div>
+    <div class="indicator-dot"></div>
+    <div class="indicator-dot"></div>
+    <div class="indicator-dot"></div>
+    <div class="indicator-dot is-active"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <button type="button" class="nav-logo nav-button" data-scroll-target="hero">JOSE</button>
+    <ul>
+      <li><button type="button" class="nav-button" data-scroll-target="about">About</button></li>
+      <li><button type="button" class="nav-button" data-scroll-target="skills">Skills</button></li>
+      <li><button type="button" class="nav-button" data-scroll-target="experience">Experience</button></li>
+      <li><button type="button" class="nav-button" data-scroll-target="achievements">Achievements</button></li>
+      <li><button type="button" class="nav-button" data-scroll-target="research">Research</button></li>
+      <li><button type="button" class="nav-button" data-scroll-target="contact">Contact</button></li>
+    </ul>
+    <button id="menu-btn" aria-label="Open menu">☰</button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" role="dialog" aria-label="Navigation">
+    <button id="mobile-close" aria-label="Close menu">✕</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="about">About</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="skills">Skills</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="experience">Experience</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="achievements">Achievements</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="research">Research</button>
+    <button type="button" class="mobile-nav-button" data-scroll-target="contact">Contact</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-index">( Portfolio — 2026 )</div>
+      <div class="hero-reel" aria-label="Portfolio focus">
+        <span>Digital-first</span>
+        <span>Hardware-aware</span>
+        <span>Automation-ready</span>
+      </div>
+      <h1>
+        <span class="hero-line"><span class="hero-line-inner">Jose</span></span>
+        <span class="hero-line"><span class="hero-line-inner"><em>Elmar</em></span></span>
+        <span class="hero-line"><span class="hero-line-inner">Acuno</span></span>
+      </h1>
+      <div class="hero-meta">
+        <p class="hero-desc">
+          Computer Engineer focused on building reliable systems for robotics,
+          automation, and hands-on electronics. I enjoy turning ideas into working
+          prototypes, whether that means control logic for line-following robots,
+          automation tools that remove repetitive work, or circuits that need to
+          perform under pressure.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Computer Engineer</span>
+          <span class="tag">Robotics</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Breadboarding</span>
+          <span class="tag">Embedded Systems</span>
+        </div>
+        <blockquote class="hero-quote">
+          <span class="hero-quote-label">Field Note</span>
+          <p>
+            "Build it, test it, improve it. That mindset has helped me move from competitions
+            to real engineering problems with confidence and discipline."
+          </p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee">
+        <span class="marquee-item">· Embedded Systems<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Machine Learning<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· RFID<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Python Automation<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· C / C++<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Hardware Design<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· SVM · MATLAB<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· IT Infrastructure<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Freelance Projects<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Embedded Systems<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Machine Learning<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· RFID<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Python Automation<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· C / C++<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Hardware Design<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· SVM · MATLAB<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· IT Infrastructure<span class="marquee-dot">·</span></span>
+        <span class="marquee-item">· Freelance Projects<span class="marquee-dot">·</span></span>
+      </div>
+    </div>
+
+    <!-- FEATURED SYSTEMS -->
+    <section id="featured" class="featured-strip r">
+      <div class="featured-head">
+        <div class="s-label">Featured Systems</div>
+        <p>
+          Selected builds across embedded logic, automation, and applied machine learning.
+        </p>
+      </div>
+
+      <div class="project-rail">
+        <a
+          href="#achievements"
+          class="project-card"
+          data-preview="Sensors / control logic / precision"
+          data-image="line following.png"
+        >
+          <span class="project-count">01</span>
+          <span class="project-title">Line-Following Robot</span>
+          <span class="project-meta">Competition-focused control system</span>
+        </a>
+        <a
+          href="#experience"
+          class="project-card"
+          data-preview="Automation / workflow logic / efficiency"
+          data-image="automation.png"
+        >
+          <span class="project-count">02</span>
+          <span class="project-title">Automation Projects</span>
+          <span class="project-meta">Practical solutions for repetitive work</span>
+        </a>
+        <a
+          href="#skills"
+          class="project-card"
+          data-preview="Breadboarding / circuits / rapid prototyping"
+          data-image="breadboarding.png"
+        >
+          <span class="project-count">03</span>
+          <span class="project-title">Breadboarding Builds</span>
+          <span class="project-meta">Hands-on electronics competition work</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <div class="section-full" id="about">
+      <div class="section r">
+        <div class="s-label">About</div>
+        <div class="about-grid">
+
+          <div>
+            <h2>Building logic<br>for the <em>real world</em></h2>
+            <div class="about-body">
+              <p>
+                I'm a Computer Engineer who genuinely enjoys the part where a problem is still
+                unclear because that's where the actual thinking happens. My focus is
+                <strong>embedded systems</strong>: writing logic close to the metal, making
+                hardware and software talk to each other, and finding the most direct path from
+                problem to working solution.
+              </p>
+              <p>
+                I've shipped freelance projects across software and hardware, RFID systems,
+                machine learning implementations, web tools. I've also been the engineer dropped
+                into a non-engineering role who immediately
+                <strong>wrote a Python script to automate the boring parts</strong>. Twice now.
+                No regrets.
+              </p>
+              <p>
+                I once climbed an electrical pole during a high school internship. Cured my fear
+                of heights through peer pressure and professionalism.
+                <strong>Character built.</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="about-nums">
+            <div class="num-cell">
+              <a href="#skills">
+                <div class="num-big">5+</div>
+                <div class="num-label">Languages</div>
+              </a>
+            </div>
+            <div class="num-cell">
+              <a href="#experience">
+                <div class="num-big">4</div>
+                <div class="num-label">Job Experiences</div>
+              </a>
+            </div>
+            <div class="num-cell">
+              <a href="#research">
+                <div class="num-big">1</div>
+                <div class="num-label">Publication</div>
+              </a>
+            </div>
+            <div class="num-cell">
+              <a href="#contact">
+                <div class="num-big">∞</div>
+                <div class="num-label">Problems Solved</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section-full" id="skills">
+      <div class="section r">
+        <div class="s-label">Skills</div>
+        <h2>What I<br><em>actually</em> know</h2>
+
+        <div class="skill-row">
+          <div class="skill-cat">Languages</div>
+          <div class="skill-items">
+            <span class="skill-pill">C</span><span class="skill-sep">/</span>
+            <span class="skill-pill">C++</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Python</span><span class="skill-sep">/</span>
+            <span class="skill-pill">JavaScript</span><span class="skill-sep">/</span>
+            <span class="skill-pill">PHP</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Java</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Google Apps Script</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Filipino (native, lol)</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Web</div>
+          <div class="skill-items">
+            <span class="skill-pill">HTML</span><span class="skill-sep">/</span>
+            <span class="skill-pill">CSS</span><span class="skill-sep">/</span>
+            <span class="skill-pill">JavaScript</span><span class="skill-sep">/</span>
+            <span class="skill-pill">PHP backend</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Hardware</div>
+          <div class="skill-items">
+            <span class="skill-pill">Embedded Systems</span><span class="skill-sep">/</span>
+            <span class="skill-pill">RFID</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Microcontrollers</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Electrical Wiring</span><span class="skill-sep">/</span>
+            <span class="skill-pill">System Logic</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Data / ML</div>
+          <div class="skill-items">
+            <span class="skill-pill">Machine Learning</span><span class="skill-sep">/</span>
+            <span class="skill-pill">SVM</span><span class="skill-sep">/</span>
+            <span class="skill-pill">MATLAB</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Python Automation</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Data Consolidation</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Robotics / Electronics</div>
+          <div class="skill-items">
+            <span class="skill-pill">Line-Following Systems</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Automation Logic</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Breadboarding</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Sensor Integration</span><span class="skill-sep">/</span>
+            <span class="skill-pill">Rapid Prototyping</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section-full" id="experience">
+      <div class="section r">
+        <div class="s-label">Experience</div>
+        <h2>Where I've<br><em>been</em></h2>
+
+        <div class="exp-item">
+          <div class="exp-time">2026 — Present</div>
+          <div class="exp-right">
+            <div class="exp-role">Commission Processing Assistant</div>
+            <div class="exp-company">SM DEVELOPMENT CORPORATION</div>
+            <p class="exp-desc">
+              Placed in a role that was essentially manual Excel consolidation. Being a computer
+              engineer, I automated it, built a <strong>Python script</strong> that handles
+              multi-file consolidation, duplicate detection, and data entry error flagging.
+              The task still exists. I just don't do it manually anymore.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-time">2025</div>
+          <div class="exp-right">
+            <div class="exp-role">IT End User Computing Intern</div>
+            <div class="exp-company">STRAIVE</div>
+            <p class="exp-desc">
+              IT asset management, hardware and software deployments, and ticket resolution for
+              computer and laptop issues. Learned how to
+              <strong>move fast through repetitive technical work</strong> by finding smarter
+              paths, a habit that stuck.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-time">2019</div>
+          <div class="exp-right">
+            <div class="exp-role">Electrical Engineer Crew Member</div>
+            <div class="exp-company">FIRST LAGUNA ELECTRIC COOPERATIVE INC.</div>
+            <p class="exp-desc">
+              Senior high school internship. Assisted engineers on
+              <strong>electrical installations</strong> from the post down to individual homes.
+              Climbed an electrical pole. Fear of heights = resolved. Professionalism = intact.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-time">Ongoing</div>
+          <div class="exp-right">
+            <div class="exp-role">Freelance Developer</div>
+            <div class="exp-company">VARIOUS CLIENTS</div>
+            <p class="exp-desc">
+              Multiple completed projects across both software and hardware,
+              <strong>RFID systems, machine learning implementations, web systems</strong>.
+              Each one came with a problem I hadn't solved before. That's the point.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-time">Competition</div>
+          <div class="exp-right">
+            <div class="exp-role">Robotics & Electronics Competitions</div>
+            <div class="exp-company">LINE-FOLLOWING • AUTOMATION • BREADBOARDING</div>
+            <p class="exp-desc">
+              Competed in robotics challenges focused on line-following, automation,
+              and breadboarding. Built reliable control logic, sensor-driven systems,
+              and fast prototypes under timing pressure. These experiences sharpened
+              my ability to turn concepts into working hardware quickly and think clearly
+              while debugging.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-full" id="achievements">
+      <div class="section r">
+        <div class="s-label">Achievements</div>
+        <h2>Competition-ready<br><em>builder</em></h2>
+
+        <div class="achievement-grid">
+          <div class="achievement-card">
+            <h3>Line-Following Robotics</h3>
+            <p>
+              Built and refined robots designed for precision, control, and fast
+              decision-making on track-based challenges.
+            </p>
+            <ul>
+              <li>Focused on sensor calibration and motion logic</li>
+              <li>Improved reliability through testing and iteration</li>
+              <li>Strengthened problem-solving under pressure</li>
+            </ul>
+          </div>
+
+          <div class="achievement-card">
+            <h3>Automation Projects</h3>
+            <p>
+              Developed practical automation solutions that reduce repetitive work
+              and make systems more efficient.
+            </p>
+            <ul>
+              <li>Applied scripting and logic to simplify workflows</li>
+              <li>Built solutions with clear, maintainable structure</li>
+              <li>Enjoys turning messy processes into smooth systems</li>
+            </ul>
+          </div>
+
+          <div class="achievement-card">
+            <h3>Breadboarding Competitions</h3>
+            <p>
+              Thrives in fast-paced electronics builds where accuracy, neatness,
+              and debugging matter just as much as creativity.
+            </p>
+            <ul>
+              <li>Strong hands-on circuit prototyping skills</li>
+              <li>Comfortable troubleshooting under pressure</li>
+              <li>Brings a structured approach to hardware builds</li>
+            </ul>
+          </div>
+
+          <div class="achievement-card">
+            <h3>What This Says About Me</h3>
+            <p>
+              I am a hands-on engineer who learns quickly, builds with intention,
+              and enjoys solving real problems with both software and hardware.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="section-full" id="research">
+      <div class="section r">
+        <div class="s-label">Research</div>
+        <div class="research-block">
+
+          <div>
+            <h2>Published<br><em>work</em></h2>
+            <div class="about-body">
+              <p class="research-note">
+                One peer-reviewed paper. A real problem. A working solution.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="research-num">( Publication — 01 )</div>
+            <a
+              href="https://ieeexplore.ieee.org/document/10963125"
+              class="research-title"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              RiderRescue: Motorcycle Crash Detection for Emergency Response Using
+              Support Vector Machine Algorithm in MATLAB
+            </a>
+            <p class="research-body">
+              A system that detects motorcycle crashes and triggers emergency responses
+              automatically, using SVM classification in MATLAB. Because after a crash,
+              every second matters and you can't rely on a bystander noticing.
+            </p>
+            <div class="research-tags">
+              <span class="tag">MATLAB</span>
+              <span class="tag">SVM</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Embedded Sensing</span>
+              <span class="tag">Emergency Systems</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="r">
+      <p class="contact-big">
+        Need someone who can build,<br>test, and improve real systems?
+      </p>
+      <p class="contact-note">
+        Open to robotics, automation, embedded, and electronics opportunities.
+      </p>
+      <div class="contact-links">
+        <a
+          href="#"
+          class="contact-email"
+          id="contact-email"
+          data-user="jose.acuno.dev"
+          data-domain="gmail"
+          data-tld="com"
+          aria-label="Email Jose Elmar Acuno"
+        >
+          Email me
+        </a>
+        <a
+          href="https://linkedin.com/in/jose-elmar-acuno"
+          class="contact-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+        <!-- <a href="#achievements" class="contact-link">Achievements</a> -->
+      </div>
+    </section>
+
+  </main>
+  <!-- ══════════════════════════════════════════════════════════ -->
+
+  <footer>
+    <span>© 2026 Jose Elmar Acuno</span>
+    <span>Computer Engineer — Manila, PH</span>
+    <span>Inspired by Nothing. Built by hand.</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (() => {
+      const emailLink = document.getElementById("contact-email");
+      if (!emailLink) return;
+
+      const address = [
+        emailLink.dataset.user,
+        "@",
+        emailLink.dataset.domain,
+        ".",
+        emailLink.dataset.tld,
+      ].join("");
+
+      emailLink.href = `mailto:${address}`;
+      emailLink.textContent = address;
+    })();
+  </script>
+  <script src="main.js"></script>
+
+</body>
+</html>

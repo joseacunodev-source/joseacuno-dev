@@ -1,0 +1,37 @@
+so here is my portfolio type of website for my future job employment want to have an html css js of this interactive website (Nothing themed website) should be interactive and the whole website is scrollable and reacts to the cursor, go all in on designs we all dont like the ai looking type of website 
+
+below is my info and stuffs you can edit it to make it more good add humor and all be free and creative 
+
+
+im bored lets make an app/system for that! 
+
+Name: Jose Elmar Acuno 
+Computer Engineer 
+Excels on Embedded System creating logics and ideas based on the problems encountered 
+
+jose.acuno.dev@gmail.com
+
+Work Experiences 
+
+Freelancing Project and System development (done multiple projects both software and hardware such as rfid,machine learning etc.)
+
+Commission Processing Assistant at SM Development Corporation 2026 ( mostly "manual" extraction of data and consolidation but as a random engineer in this position i made my task easier by implementing a python program that i made to minimize my repeated task such as manual consolidation of multiple files and auto checker for duplicated entries and other cases of data entry errors.) 
+
+IT End User Computing Intern at Straive 2025 ( more on IT data asset management and software and hardware as well like accepting tickets regarding on computer/laptop issues and deployments. Learned more about how fast task can be and alternative ways to get job things done) 
+
+Electrical Engineer Crew Member Intern 2019 (senior highschool) at First Laguna Electric Cooperative Inc. ( Crew member helping other senior engineer on electrical installation from the electrical post to individual houses, experienced to ignore the fear of heights by climbing at top of the electrical pole)
+
+
+expertise language 
+
+Filipino(I'm native jk HAHAHA) 
+C/C++, Python, JavaScript, PHP
+HTML, CSS, Java, GoogleScript
+
+
+Research Publication
+“RiderRescue: Motorcycle Crash Detection for Emergency Response Using Support Vector
+Machine Algorithm in MATLAB”
+
+
+add more 
