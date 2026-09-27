@@ -78,7 +78,7 @@ document.querySelectorAll("a, button[data-scroll-target]").forEach((el) => {
     return;
   }
 
-  if (!href) return;
+  if (!href || el.hasAttribute("data-native-link")) return;
 
   el.setAttribute("data-href", href);
 
